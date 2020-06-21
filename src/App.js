@@ -1,6 +1,6 @@
 import React from 'react';
-import ProjetoBase from './components/ProjetoBase/ProjetoBase';
+import Valores from './components/valores/Valores';
 
 export default () => {
-    return <ProjetoBase />;
+    return <Valores />;
 }
