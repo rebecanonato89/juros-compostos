@@ -14,16 +14,17 @@ export default () => {
       const period  = parseInt(values.periodoMeses) || null;
       const monthSaving = 0;
 
-      let totalAmount = capitalInicial;
+      let totalAmount = 0;
+      let valorMensalPorcentagem = 0;
       let taxaJurosPorcentagem = rate / 100;
-      let aux = 0;
 
       for (let i = 1 ; i <= period ; i++) {
 
-        aux = (1 + taxaJurosPorcentagem);
+        totalAmount = capitalInicial * ((1 + taxaJurosPorcentagem)**i);
+        
 
-        totalAmount = capitalInicial * aux + totalAmount;
-   
+
+
         results.push({ month: i, totalAmount: totalAmount.toFixed(2)});
       };
 
