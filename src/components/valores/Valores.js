@@ -12,6 +12,7 @@ export default () => {
       const capitalInicial  = parseFloat(values.montanteInicial) || null;
       const rate    = parseFloat(values.taxaJurosMensal) || null;
       const period  = parseInt(values.periodoMeses) || null;
+      const resultsAux = [];
 
       let totalAmount = 0;
       // let valorMensalPorcentagem = 0;
@@ -24,15 +25,16 @@ export default () => {
 
         valorMensal = totalAmount - capitalInicial;
 
-        results.push({ month: i, totalAmount: totalAmount.toFixed(2), valorMensal: valorMensal.toFixed(2)});
+        resultsAux.push({ month: i, totalAmount: totalAmount.toFixed(2), valorMensal: valorMensal.toFixed(2)});
       };
+      setResults(resultsAux);
     };
 
     useEffect(() => {
       return () => {
-        setResults(results);
+        setResults([]);
       }
-    },);
+    },[]);
 
     return (
       <div className="row">
