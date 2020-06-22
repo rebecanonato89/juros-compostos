@@ -24,7 +24,7 @@ function Resultados({results}) {
             <ul>
                 { results.map((row, i) => 
                     <li key={i}>
-                        <strong scope='row'>{row.month}</strong>
+                        <th scope='row'>{row.month}</th>
                         <p style={mystyle}>R${row.totalAmount}</p>
                         <p style={mystyle}>R${row.valorMensal}</p>
                         <p style={mystyle}>{row.valorMensalPorcentagem}%</p>

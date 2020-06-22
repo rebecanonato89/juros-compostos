@@ -24,7 +24,7 @@ export const Container = styled.div`
   ul li p {
     padding-left: 35px;
   }
-  ul li strong {
+  ul li th {
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
