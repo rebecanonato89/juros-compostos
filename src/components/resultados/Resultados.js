@@ -1,12 +1,11 @@
 import React from "react";
+import { Container } from "./styles";
 
 function Resultados({results}) {
     
-    console.log(results);
-    
     
     return(
-        <div>
+        <Container>
             <ul>
                 { results.map((row, i) => 
                     <li key={i}>
@@ -15,7 +14,7 @@ function Resultados({results}) {
                     </li>
                 )}
             </ul>
-        </div>
+        </Container>
     )
 }
 
