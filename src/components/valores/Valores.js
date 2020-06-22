@@ -15,7 +15,7 @@ export default () => {
       const resultsAux = [];
 
       let totalAmount = 0;
-      // let valorMensalPorcentagem = 0;
+      let valorMensalPorcentagem = 0;
       let valorMensal = 0;
       let taxaJurosPorcentagem = rate / 100;
 
@@ -25,7 +25,9 @@ export default () => {
 
         valorMensal = totalAmount - capitalInicial;
 
-        resultsAux.push({ month: i, totalAmount: totalAmount.toFixed(2), valorMensal: valorMensal.toFixed(2)});
+        valorMensalPorcentagem = (valorMensal * 100)/capitalInicial;
+
+        resultsAux.push({ month: i, totalAmount: totalAmount.toFixed(2), valorMensal: valorMensal.toFixed(2), valorMensalPorcentagem: valorMensalPorcentagem.toFixed(2)});
       };
       setResults(resultsAux);
     };
@@ -86,7 +88,7 @@ export default () => {
                   required 
                   pattern="[0-9]+$"
                   min="1" 
-                  max="90"
+                  max="900"
                 />
                 <label 
                   htmlFor="periodoMeses" 

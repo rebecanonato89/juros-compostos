@@ -7,16 +7,27 @@ export const Container = styled.div`
   margin: 32px auto;
 
   ul {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-gap: 24px;
-    list-style: none;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-gap: 15px;
+      list-style: none;
     }
- ul li {
-    background: #efeceb;
-    padding: 24px;
-    border-radius: 8px;
-    position: relative;
+  ul li {
+      background: #efeceb;
+      padding: 24px;
+      border-radius: 8px;
+      position: relative;
+      color: #000;
+      display: flex;
+      flex-direction: column;
     }
+  ul li p {
+    padding-left: 35px;
+  }
+  ul li strong {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
 
 `;
