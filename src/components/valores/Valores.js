@@ -1,7 +1,7 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState }  from "react";
+import React, { useState, useEffect }  from "react";
 import useForm from "../../controllers/useForm";
-import { Container } from './styles';
+import { Container } from "./styles";
+import Resultados from "../resultados/Resultados";
 
 
 export default () => {
@@ -12,25 +12,27 @@ export default () => {
       const capitalInicial  = parseFloat(values.montanteInicial) || null;
       const rate    = parseFloat(values.taxaJurosMensal) || null;
       const period  = parseInt(values.periodoMeses) || null;
-      const monthSaving = 0;
 
       let totalAmount = 0;
-      let valorMensalPorcentagem = 0;
+      // let valorMensalPorcentagem = 0;
+      let valorMensal = 0;
       let taxaJurosPorcentagem = rate / 100;
 
       for (let i = 1 ; i <= period ; i++) {
 
         totalAmount = capitalInicial * ((1 + taxaJurosPorcentagem)**i);
-        
 
+        valorMensal = totalAmount - capitalInicial;
 
-
-        results.push({ month: i, totalAmount: totalAmount.toFixed(2)});
+        results.push({ month: i, totalAmount: totalAmount.toFixed(2), valorMensal: valorMensal.toFixed(2)});
       };
-
-        setResults(results);
-        console.log({ results });
     };
+
+    useEffect(() => {
+      return () => {
+        setResults(results);
+      }
+    },);
 
     return (
       <div className="row">
@@ -54,20 +56,6 @@ export default () => {
                 />
                 <label htmlFor="montanteInicial">Montante Inicial</label>
               </div>
-              <div className="input-field col s6">
-                <input
-                  onChange={handleChange}
-                  name="aporteMensal" 
-                  id="aporteMensal" 
-                  type="number" 
-                  className="validate"
-                  required 
-                  step="0.01"
-                  min="0" 
-                  max="99999"
-                />
-                <label htmlFor="aporteMensal">Aporte Mensal</label>
-              </div>
             </div>
             <div className="row">
               <div className="input-field col s6">
@@ -84,6 +72,8 @@ export default () => {
                 />
                 <label htmlFor="taxaJurosMensal">Taxa de Juros Mensal</label>
               </div>
+            </div>
+            <div className="row">
               <div className="input-field col s6">
                 <input
                   onChange={handleChange}
@@ -107,14 +97,7 @@ export default () => {
           </form>
         </Container>
 
-        <ul>
-          { results.map((row, i) => 
-            <li key={i}>
-              <strong scope='row'>{row.month}</strong>
-              <p>R${row.saving}</p>
-            </li>
-          )}
-        </ul>
+        <Resultados results={results} />
 
       </div> 
     

@@ -1,18 +1,22 @@
 import React from "react";
 
-const Modal = props => {
-
-    console.log(props);
-    const { results } = props;    
+function Resultados({results}) {
     
     console.log(results);
     
     
     return(
         <div>
-            <p>Meu modal!</p>
+            <ul>
+                { results.map((row, i) => 
+                    <li key={i}>
+                    <strong scope='row'>{row.month}</strong>
+                    <p>R${row.totalAmount}</p>
+                    </li>
+                )}
+            </ul>
         </div>
     )
 }
 
-export default Modal;
+export default Resultados;
